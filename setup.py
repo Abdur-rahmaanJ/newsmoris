@@ -3,7 +3,8 @@ See:
 https://packaging.python.org/guides/distributing-packages-using-setuptools/
 https://github.com/pypa/sampleproject
 """
-
+import sys
+import os
 from newsmoris import __version__
 
 # Always prefer setuptools over distutils
@@ -121,7 +122,6 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9'
-        'Programming Language :: Python :: 3.10'
     ],
 
     # This field adds keywords for your project which will appear on the
