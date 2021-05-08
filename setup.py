@@ -27,7 +27,16 @@ if sys.argv[-1] == "publish":  # requests
     os.system("twine upload dist/* --skip-existing")
     sys.exit()
 
-
+requires = [
+    'beautifulsoup4==4.9.3',
+    'bs4==0.0.1',
+    'certifi==2020.12.5',
+    'chardet==3.0.4',
+    'click==7.1.2',
+    'requests==2.20.0',
+    'soupsieve==2.2.1',
+    'urllib3==1.24.3',
+]
 
 # Arguments marked as "Required" below must be included for upload to PyPI.
 # Fields marked as "Optional" may be commented out.
@@ -156,7 +165,7 @@ setup(
     #
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires = open('requirements.txt').read().split('\n'),  # Optional
+    install_requires=requires,  # Optional
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). Users will be able to install these using the "extras"

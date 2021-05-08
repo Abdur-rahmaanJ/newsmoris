@@ -1,6 +1,9 @@
 # newsmoris
 
 
+pip install newsmoris==0.0.5
+
+
 ```python
 >>> from newsmoris import DefiMedia
 >>> DefiMedia.top_news()
@@ -58,9 +61,56 @@
 >>> DefiMedia.page('faits-divers', 0)
 >>> DefiMedia.page('defi-zen', 0)
 >>> DefiMedia.page('politique', 0)
->>> DefiMedia.page('people', 0)
 >>> DefiMedia.page('magazine', 0)
 >>> DefiMedia.page('people', 0)
 >>> DefiMedia.page('news-sunday', 0)
 >>> DefiMedia.page('techno', 0)
+```
+
+## Shell commands
+
+
+```
+$ newsmoris --help
+Usage: newsmoris [OPTIONS] COMMAND [ARGS]...
+
+  Newsmoris cli
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  article  Input url
+  page     Choose category from actualites, explikouka, faits-divers,...
+  topnews  Top news
+
+$ newsmoris article https://defimedia.info/apres-avoir-ete-pris-dun-malaise-sur-un-bateau-un-employe-de-la-chcl-meurt
+Written by WWW. DEFIMEDIA.INFO
+Triste fin pour Tony Juleekeea. Ce « lasher », employé à la Cargo Handling Corporation Limited, a été pris de malaise sur un bateau à la mi-journée, ce mardi 4 mai. Âgé de 51 ans, il est mort pendant qu'on le transportait à l’hôpital. Une autopsie sera pratiquée pour déterminer les causes exactes de son décès.
+Cet habitant de Roche-Bois  laisse derrière lui trois enfants. Tony Juleekeea comptait 13 ans de service au sein de la CHCL.
+Un dénommé Patrick, un ami, qui s’est confié à Radio Plus ce mardi après-midi, se souvient de Tony Juleekeea comme d'une personne joviale. Il était également musicien. Une enquête a été ouverte après son décès.
+
+$ newsmoris page actualites 0
+Finances publiques : la Banque de Maurice annule Rs 32 milliards d’allocation à l’Etat
+https://defimedia.info/finances-publiques-la-banque-de-maurice-annule-rs-32-milliards-dallocation-letat
+
+Covid-19 : la police affirme qu'elle sera intransigeante dans les autobus
+https://defimedia.info/covid-19-la-police-affirme-quelle-sera-intransigeante-dans-les-autobus
+
+Covid-19 : Camp-Diable passe en zone rouge
+https://defimedia.info/covid-19-camp-diable-passe-en-zone-rouge
+
+...
+
+$ newsmoris topnews
+Covid-19 : l'Inde dépasse le seuil des 4 000 morts par jour 
+https://defimedia.info/covid-19-linde-depasse-le-seuil-des-4-000-morts-par-jour
+
+Finances publiques : la Banque de Maurice annule Rs 32 milliards d’allocation à l’Etat
+https://defimedia.info/finances-publiques-la-banque-de-maurice-annule-rs-32-milliards-dallocation-letat
+
+Météo : la température baisse de 2 à 3 degrés
+https://defimedia.info/meteo-la-temperature-baisse-de-2-3-degres-0
+
+...
 ```

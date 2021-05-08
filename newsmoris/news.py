@@ -1,7 +1,11 @@
-import json
-import requests
-from bs4 import BeautifulSoup
-from pprint import pprint
+
+try:
+    import json
+    import requests
+    from bs4 import BeautifulSoup
+    from pprint import pprint
+except Exception as e:
+    pass
 
 class PageNumberTooLow(Exception):
     def __init__(self, page_num, message="Page number should be 0 or greater"):
@@ -35,6 +39,7 @@ class DefiMedia:
 
     @classmethod
     def top_news(cls): # front page
+        links = []
         summary = {'news':[]}
         front_page = cls.BASE_URL + '/'
         titles = requests.get(front_page, headers=headers).content
@@ -43,11 +48,12 @@ class DefiMedia:
         for news in ts:
             title = news.find(class_='sup-title').text
             link = news.find('a')['href']
-            if title not in summary['news']:
+            if link not in links:
                 summary['news'].append({
                     'title': title,
                     'link': cls.BASE_URL + link
                     })
+                links.append(link)
         return summary['news']
 
     @classmethod
@@ -55,6 +61,7 @@ class DefiMedia:
         if page_num < 0:
             raise PageNumberTooLow(page_num)
 
+        links = []
         summary = {'news': []}
         page_num_ = page_num
         payload = {'page': page_num_}
@@ -68,11 +75,12 @@ class DefiMedia:
         for news in all_news:
             title = news.find(class_='sup-title').text.strip().replace('\n', '')
             link = news.find('a')['href']
-            if title not in summary['news']:
+            if link not in links:
                 summary['news'].append({
                     'title': title,
                     'link': cls.BASE_URL + link
                     })
+                links.append(link)
         return summary['news']
 
     @classmethod
