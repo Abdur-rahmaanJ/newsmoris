@@ -1,9 +1,8 @@
 
 try:
-    import json
     import requests
     from bs4 import BeautifulSoup
-    from pprint import pprint
+    from random import randint, choice
 except Exception as e:
     pass
 
@@ -19,10 +18,10 @@ class PageNumberTooLow(Exception):
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0',
-    'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
-    'Accept-Language' : 'en-US,en;q=0.5', 
-    'Accept-Encoding' : 'gzip', 
-    'DNT' : '1', # Do Not Track Request Header 
+    'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Language' : 'en-US,en;q=0.5',
+    'Accept-Encoding' : 'gzip',
+    'DNT' : '1', # Do Not Track Request Header
     'Connection' : 'close',
     'Sec-GPC': '1',
     'Sec-Fetch-Site': 'none',
@@ -93,4 +92,20 @@ class DefiMedia:
         return {
             'author': author,
             'paragraphs': paragraphs,
+        }
+
+    @classmethod
+    def random_article(cls):
+        random_sitemap_nb = randint(1, 3)
+        sitemap_url = cls.BASE_URL + f"/sitemaps/{random_sitemap_nb}/sitemap.xml"
+
+        source = requests.get(sitemap_url, headers=headers).content
+        soup = BeautifulSoup(source, 'html.parser')
+        random_article_url: str = choice(soup.find_all('loc')).text
+
+        random_article_title = random_article_url.replace("http://defimedia.info/", "").replace("-", " ").title()
+
+        return {
+            'title': random_article_title,
+            'link': random_article_url
         }
