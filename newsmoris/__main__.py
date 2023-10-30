@@ -70,10 +70,15 @@ def article(article):
     for p in info['paragraphs']:
         print(p)
 
+@click.command(help="Random Article")
+def random():
+    article = DefiMedia.random_article()
+    print(article['title'], article['link'], sep='\n', end='\n\n')
 
 cli.add_command(topnews)
 cli.add_command(page)
 cli.add_command(article)
+cli.add_command(random)
 
 def main():
     cli()
