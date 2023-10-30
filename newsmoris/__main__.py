@@ -1,5 +1,5 @@
 
-from news import DefiMedia
+from newsmoris import DefiMedia
 
 import click
 
